@@ -5,8 +5,15 @@ set -o vi
 export EDITOR=/usr/local/bin/vim
 export VISUAL=/usr/bin/vim
 
-source "/Users/${USER}/dev/env/github.sh"
-source "/Users/${USER}/bin/excel"
+script_arr=()
+script_arr+=("/Users/${USER}/dev/env/github.sh")
+script_arr+=("/Users/${USER}/bin/excel")
+script_arr+=("/Users/${USER}/bin/bazel.sh")
+for s in $script_arr; do
+  if [[ -f "${s}" ]]; then
+    source "${s}" 
+  fi
+done
 
 # Cheat.sh
 export PATH=$PATH:"/Users/${USER}/bin"
