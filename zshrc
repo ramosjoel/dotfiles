@@ -65,6 +65,9 @@ export ZSH="/Users/${USER}/.oh-my-zsh"
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # old
 source /opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Zoxide init
+eval "$(zoxide init zsh)"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
