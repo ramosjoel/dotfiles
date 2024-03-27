@@ -2,8 +2,11 @@
 #
 # Set readline editing to vi
 set -o vi
-export EDITOR=/usr/local/bin/vim
-export VISUAL=/usr/bin/vim
+# export EDITOR=/usr/local/bin/vim
+# export VISUAL=/usr/bin/vim
+export EDITOR=/opt/homebrew/bin/nvim
+export VISUAL=/opt/homebrew/bin/nvim
+
 
 script_arr=()
 script_arr+=("/Users/${USER}/dev/env/github.sh")
@@ -36,8 +39,6 @@ export PATH=$PATH:"/Users/${USER}/dev/webdrivers/chrome90"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home"
 export PATH=$PATH:"${JAVA_HOME}/bin"
 
-# zsh syntax highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # powerline status bar
 # powerline_root=$(pip3 show powerline-status | grep Location | awk '{print $2}')
@@ -60,6 +61,9 @@ export PROXYMAN_USERS_DIR="/Users/${USER}/Library/Application Support/com.proxym
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/${USER}/.oh-my-zsh"
+# zsh syntax highlighting
+# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # old
+source /opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
