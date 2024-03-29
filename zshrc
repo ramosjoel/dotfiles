@@ -18,6 +18,19 @@ for s in $script_arr; do
   fi
 done
 
+# Git
+alias gs="git status"
+alias gc="git commit"
+alias gl="git log"
+alias gpush="git push"
+alias gpull="git pull"
+alias gf="git fetch"
+alias gr="git rebase"
+
+# ls
+alias ll="lsd -l"
+alias la="lsd -a"
+
 # Cheat.sh
 export PATH=$PATH:"/Users/${USER}/bin"
 
