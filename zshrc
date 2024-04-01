@@ -8,65 +8,6 @@ export EDITOR=/opt/homebrew/bin/nvim
 export VISUAL=/opt/homebrew/bin/nvim
 
 
-script_arr=()
-script_arr+=("/Users/${USER}/dev/env/github.sh")
-script_arr+=("/Users/${USER}/bin/excel")
-script_arr+=("/Users/${USER}/bin/bazel.sh")
-for s in $script_arr; do
-  if [[ -f "${s}" ]]; then
-    source "${s}" 
-  fi
-done
-
-# ls
-alias ll='lsd -l'
-alias la='lsd -a'
-
-# Git
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gl='git log'
-alias gf='git fetch'
-alias gr='git rebase'
-
-# Cheat.sh
-export PATH=$PATH:"/Users/${USER}/bin"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Android
-export ANDROID_HOME="/Users/${USER}/Library/Android/sdk"
-export ANDROID_JDK="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
-export PATH=$PATH:"${ANDROID_HOME}/emulator"
-export PATH=$PATH:"${ANDROID_HOME}/platform-tools"
-
-# Chromedriver
-export PATH=$PATH:"/Users/${USER}/dev/webdrivers/chrome90"
-
-# Java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home"
-export PATH=$PATH:"${JAVA_HOME}/bin"
-
-
-# powerline status bar
-# powerline_root=$(pip3 show powerline-status | grep Location | awk '{print $2}')
-# . ${powerline_root}/powerline/bindings/zsh/powerline.zsh
-
-# FZF
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
-fi
-
-# Fork for behave-parallel on Catalina
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-# Proxyman
-export PROXYMAN_USERS_DIR="/Users/${USER}/Library/Application Support/com.proxyman.NSProxy/users"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -76,9 +17,6 @@ export ZSH="/Users/${USER}/.oh-my-zsh"
 # zsh syntax highlighting
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # old
 source /opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Zoxide init
-eval "$(zoxide init zsh)"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -178,9 +116,61 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# ***** DO CUSTOMIZATIONS AFTER ZSH SETUP ***** #
+
+# Zoxide init
+eval "$(zoxide init zsh)"
+
+script_arr=()
+script_arr+=("/Users/${USER}/dev/env/github.sh")
+script_arr+=("/Users/${USER}/bin/excel")
+script_arr+=("/Users/${USER}/bin/bazel.sh")
+script_arr+=("/Users/${USER}/.dotfiles/git.sh")
+script_arr+=("/Users/${USER}/.dotfiles/lsd.sh")
+for s in $script_arr; do
+  if [[ -f "${s}" ]]; then
+    # echo " [zshrc][DEBUG] Sourcing ${s}..."
+    source $s
+  fi
+done
+
+# Cheat.sh
+export PATH=$PATH:"/Users/${USER}/bin"
+
+# Android
+export ANDROID_HOME="/Users/${USER}/Library/Android/sdk"
+export ANDROID_JDK="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+export PATH=$PATH:"${ANDROID_HOME}/emulator"
+export PATH=$PATH:"${ANDROID_HOME}/platform-tools"
+
+# Chromedriver
+export PATH=$PATH:"/Users/${USER}/dev/webdrivers/chrome90"
+
+# Java
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home"
+export PATH=$PATH:"${JAVA_HOME}/bin"
+
+
+# powerline status bar
+# powerline_root=$(pip3 show powerline-status | grep Location | awk '{print $2}')
+# . ${powerline_root}/powerline/bindings/zsh/powerline.zsh
+
+# FZF
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
+# Fork for behave-parallel on Catalina
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# Proxyman
+export PROXYMAN_USERS_DIR="/Users/${USER}/Library/Application Support/com.proxyman.NSProxy/users"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 
 # psql
