@@ -125,8 +125,6 @@ script_arr=()
 script_arr+=("/Users/${USER}/dev/env/github.sh")
 script_arr+=("/Users/${USER}/bin/excel")
 script_arr+=("/Users/${USER}/bin/bazel.sh")
-script_arr+=("/Users/${USER}/.dotfiles/git.sh")
-script_arr+=("/Users/${USER}/.dotfiles/lsd.sh")
 for s in $script_arr; do
   if [[ -f "${s}" ]]; then
     # echo " [zshrc][DEBUG] Sourcing ${s}..."
