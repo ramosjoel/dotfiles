@@ -4,7 +4,7 @@
 set -o vi
 
 MAC_ARCH=$(uname -m)
-if [[ ${MAC_ARCH} = "x86_64" ]]
+if [[ $MAC_ARCH = "x86_64" ]]
 then
   export EDITOR=/usr/local/bin/nvim
   export VISUAL=/usr/local/bin/nvim
