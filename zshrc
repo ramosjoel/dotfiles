@@ -2,11 +2,16 @@
 #
 # Set readline editing to vi
 set -o vi
-# export EDITOR=/usr/local/bin/vim
-# export VISUAL=/usr/bin/vim
-export EDITOR=/opt/homebrew/bin/nvim
-export VISUAL=/opt/homebrew/bin/nvim
 
+MAC_ARCH=$(uname -m)
+if [[ $MAC_ARCH = "x86_64" ]]
+then
+  export EDITOR=/usr/local/bin/nvim
+  export VISUAL=/usr/local/bin/nvim
+else
+  export EDITOR=/opt/homebrew/bin/nvim
+  export VISUAL=/opt/homebrew/bin/nvim
+fi
 
 
 # If you come from bash you might have to change your $PATH.
@@ -14,9 +19,14 @@ export VISUAL=/opt/homebrew/bin/nvim
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/${USER}/.oh-my-zsh"
+
 # zsh syntax highlighting
-# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # old
-source /opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ ${MAC_ARCH} = "x86_64" ]]
+then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+  source /opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -118,9 +128,6 @@ source $ZSH/oh-my-zsh.sh
 
 # ***** DO CUSTOMIZATIONS AFTER ZSH SETUP ***** #
 
-# Zoxide init
-eval "$(zoxide init zsh)"
-
 script_arr=()
 script_arr+=("/Users/${USER}/dev/env/github.sh")
 script_arr+=("/Users/${USER}/bin/excel")
@@ -148,34 +155,9 @@ export PATH=$PATH:"/Users/${USER}/dev/webdrivers/chrome90"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home"
 export PATH=$PATH:"${JAVA_HOME}/bin"
 
-
 # powerline status bar
 # powerline_root=$(pip3 show powerline-status | grep Location | awk '{print $2}')
 # . ${powerline_root}/powerline/bindings/zsh/powerline.zsh
 
-# FZF
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
-fi
-
 # Fork for behave-parallel on Catalina
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-# Proxyman
-export PROXYMAN_USERS_DIR="/Users/${USER}/Library/Application Support/com.proxyman.NSProxy/users"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="/usr/local/opt/python@3.7/bin:$PATH"
-
-# psql
-export PATH="/usr/local/opt/libpq/bin:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "/Users/${USER}/google-cloud-sdk/path.zsh.inc" ]; then . "/Users/${USER}/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/${USER}/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/${USER}/google-cloud-sdk/completion.zsh.inc'; fi
