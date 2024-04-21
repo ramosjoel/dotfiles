@@ -30,6 +30,7 @@ jobs:
 
   github_release:
     name: Create GitHub Release
+    needs: release_pr
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
