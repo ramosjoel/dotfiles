@@ -8,7 +8,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release_pr:
+  create_release_pr:
     name: Create Release PR
     runs-on: ubuntu-latest
     steps:
@@ -28,19 +28,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  github_release:
-    name: Create GitHub Release
-    needs: release_pr
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - uses: actions/checkout@v2
-      - uses: CupOfTea696/gh-action-auto-release@v1.0.0
-        with:
-          title: "Release: $version"
-          tag: "v$semver"
-          draft: false
-          regex: "/^Release: #{semver}$/i"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # create_github_release:
+  #   name: Create GitHub Release
+  #   needs: release_pr
+  #   runs-on: ubuntu-latest
+  #
+  #   # Steps represent a sequence of tasks that will be executed as part of the job
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: CupOfTea696/gh-action-auto-release@v1.0.0
+  #       with:
+  #         title: "Release: $version"
+  #         tag: "v$semver"
+  #         draft: false
+  #         regex: "/^Release: #{semver}$/i"
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
