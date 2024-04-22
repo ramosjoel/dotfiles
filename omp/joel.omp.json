@@ -7,9 +7,9 @@
         {
           "background": "#003543",
           "foreground": "#00c983",
-          "leading_diamond": "\ue0b6",
+          "leading_diamond": "\u256d\u2500\ue0b6",
           "style": "diamond",
-          "template": "{{ .Icon }} {{ .HostName }} ",
+          "template": "{{ .Icon }} {{ .UserName }} ",
           "type": "os"
         },
         {
@@ -37,7 +37,7 @@
             "fetch_upstream_icon": true
           },
           "style": "powerline",
-          "template": " \u279c ({{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}) ",
+          "template": " \u279c {{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
           "type": "git"
         },
         {
@@ -45,7 +45,7 @@
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
-          "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+          "template": " \ue718 v{{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
           "type": "node"
         },
         {
@@ -95,13 +95,13 @@
         {
           "foreground": "#cd5e42",
           "style": "plain",
-          "template": "\ue3bf ",
+          "template": "\ue3bf",
           "type": "root"
         },
         {
           "foreground": "#CD4277",
           "style": "plain",
-          "template": " <#45F1C2><b>\u26a1</b></><b>{{ .UserName }}</b> <#26C6DA>\u276f</><#45F1C2>\u276f</>",
+          "template": "<#003543>\u2570\u2500</> <#26C6DA>\u276f</><#45F1C2>\u276f</>",
           "type": "text"
         }
       ],
