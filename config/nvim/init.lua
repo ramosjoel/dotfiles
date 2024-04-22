@@ -32,6 +32,7 @@ require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+  'voldikss/vim-floaterm',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -280,7 +281,7 @@ require('nvim-treesitter.configs').setup {
     'typescript',
     'vim',
     'vimdoc',
-    'yaml' 
+    'yaml'
   },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
