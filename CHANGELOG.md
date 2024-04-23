@@ -1,5 +1,13 @@
 # dotfiles
 
+## 0.6.0
+
+### Minor Changes
+
+- e096065: Customizes multi-line terminal
+
+  Adds markdown-preview for Neovim
+
 ## 0.5.0
 
 ### Minor Changes
