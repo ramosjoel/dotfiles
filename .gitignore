@@ -1,5 +1,6 @@
 
 node_modules/*
-oh-my-zsh/custom/goodrx.zsh
 oh-my-zsh/custom/codefresh.zsh
+oh-my-zsh/custom/goodrx.zsh
+oh-my-zsh/custom/plaid.zsh
 okta_aws_login_config
