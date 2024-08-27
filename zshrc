@@ -152,8 +152,11 @@ export PATH=$PATH:"${ANDROID_HOME}/platform-tools"
 export PATH=$PATH:"/Users/${USER}/dev/webdrivers/chrome90"
 
 # Java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home"
-export PATH=$PATH:"${JAVA_HOME}/bin"
+if [[ $MAC_ARCH = "x86_64" ]]
+then
+  export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home"
+  export PATH=$PATH:"${JAVA_HOME}/bin"
+fi
 
 # powerline status bar
 # powerline_root=$(pip3 show powerline-status | grep Location | awk '{print $2}')
