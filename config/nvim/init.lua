@@ -264,11 +264,27 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
+-- telescope: list builtins, search through, and run them with <cr>
+vim.keymap.set('n', '<leader>b', require('telescope.builtin').builtin, { desc = '[B]uiltin: Search for and run a Telescope builtin.' })
+-- telescope general mappings
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>rr', require('telescope.builtin').registers, { desc = '[R]egisters' })
+vim.keymap.set('n', '<leader>ch', require('telescope.builtin').command_history, { desc = '[C]ommand [H]istory' })
+-- telescope lsp commands
+vim.keymap.set('n', '<leader>lr', require('telescope.builtin').lsp_references, { desc = '[L]SP [R]eferences: List refs for word under cursor' })
+-- telescope git mappings
+vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = '[G]it [S]tatus' })
+vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = '[G]it [C]ommits' })
+vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { desc = '[G]it [B]ranches' })
+vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = '[G]it [F]iles' })
+-- telescope man pages search
+vim.keymap.set('n', '<leader>mp', require('telescope.builtin').man_pages, { desc = '[M]an [P]ages' })
+-- telescope treesitter
+vim.keymap.set('n', '<leader>ts', require('telescope.builtin').treesitter, { desc = '[T]ree [S]itter' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -277,20 +293,38 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'c',
     'cpp',
+    'css',
+    'csv',
+    'diff',
     'dockerfile',
+    'dot',
     'git_config',
     'go',
+    'graphql',
+    'html',
     'javascript',
+    'json',
     'jsdoc',
+    'latex',
     'lua',
     'make',
+    'mermaid',
     'python',
+    'regex',
+    'ruby',
     'rust',
+    'ssh_config',
+    'starlark',
+    'sql',
+    'terraform',
+    'textproto',
+    'tmux',
     'toml',
     'tsx',
     'typescript',
     'vim',
     'vimdoc',
+    'xml',
     'yaml'
   },
 
