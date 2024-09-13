@@ -1,5 +1,18 @@
 # dotfiles
 
+## 0.6.0
+
+### Minor Changes
+
+- d4dde9c: Adds .zprofile file for zsh login shells
+- e096065: Customizes multi-line terminal
+
+  Adds markdown-preview for Neovim
+
+### Patch Changes
+
+- f034aab: Updates zshrc to only set JAVA_HOME on x86 machines
+
 ## 0.5.0
 
 ### Minor Changes
