@@ -8,3 +8,6 @@ alias gl='git log'
 alias gf='git fetch'
 alias gr='git rebase'
 
+function branchname() {
+  git rev-parse --abbrev-ref HEAD
+}
