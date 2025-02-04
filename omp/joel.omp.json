@@ -44,10 +44,23 @@
         {
           "template": " \ue718 v{{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
           "foreground": "#ffffff",
+          "fetch_version": true,
+          "fetch_package_manager": true,
+          "pnpm_icon": "\uF02C1",
+          "yarn_icon": "\uF011B",
+          "npm_icon": "\uE71E",
           "powerline_symbol": "\ue0b0",
           "background": "#76b367",
           "type": "node",
           "style": "powerline"
+        },
+        {
+          "type": "go",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "#ffffff",
+          "background": "#7FD5EA",
+          "template": "  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} "
         },
         {
           "properties": {
