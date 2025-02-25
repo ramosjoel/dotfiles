@@ -24,10 +24,12 @@ function start_emulator() {
     # This option clears the data for the virtual device and returns it to the same state as when it was first defined. 
     # All installed apps and settings are removed
   # -no-snapshot - Disables the Quick Boot feature completely and doesn't load or save the emulator state.
+  # -tcpdump - dumps tcp log file for tools like Wireshark.
   emulator \
     -avd $AVD \
     -wipe-data \
-    -no-snapshot
+    -no-snapshot \
+    -tcpdump emulator.tcpdump.log
 }
 
 # Start emulator as writable to install cert
@@ -66,9 +68,12 @@ function start_emulator_as_writable() {
 
 function install_apk() {
   apk=$1
-  [[ -f $apk ]] || echo "Couldn't find $apk" && exit 1;
-  echo "Installing $apk..."
-  adb install $1
+  if [[ ! -f $apk ]]; then 
+    echo "Couldn't find $apk"
+  else
+    echo "Installing $apk..."
+    adb install $1
+  fi
 }
 
 function _disable_secure_boot_verification() {
