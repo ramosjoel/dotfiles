@@ -29,6 +29,7 @@ function start_emulator() {
     -avd $AVD \
     -wipe-data \
     -no-snapshot \
+    -writable-system \
     -tcpdump emulator.tcpdump.log
 }
 
