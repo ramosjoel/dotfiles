@@ -3,8 +3,8 @@
   "version": "0.6.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "changeset",
-    "version": "changeset version"
+    "cs:prepare": "changeset",
+    "cs:version": "changeset version"
   },
   "dependencies": {
     "@changesets/cli": "^2.27.1"
