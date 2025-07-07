@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.7.0
+
+### Minor Changes
+
+- 19e6794: Updates dotfiles with various cleanup
+
 ## 0.6.0
 
 ### Minor Changes
