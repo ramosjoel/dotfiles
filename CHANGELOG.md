@@ -1,5 +1,13 @@
 # dotfiles
 
+## 0.7.0
+
+### Minor Changes
+
+- 968fdc4: Adds neovim configs for DAP UI, Go debugging, and running tests.
+- Updates the pnpm script names to avoid conflicts with other tools
+- 19e6794: Updates dotfiles with various cleanup
+
 ## 0.6.0
 
 ### Minor Changes
