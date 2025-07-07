@@ -288,8 +288,8 @@ vim.keymap.set('n', '<leader>/', function()
 end, { desc = '[/] Fuzzily search in current buffer' })
 
 -- telescope: list builtins, search through, and run them with <cr>
-vim.keymap.set('n', '<leader>b', require('telescope.builtin').builtin,
-  { desc = '[B]uiltin: Search for and run a Telescope builtin.' })
+vim.keymap.set('n', '<leader>sb', require('telescope.builtin').builtin,
+  { desc = '[S]search [B]uiltins: Search for and run a Telescope builtin.' })
 -- telescope general mappings
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
