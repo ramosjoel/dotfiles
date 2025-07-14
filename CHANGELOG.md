@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.8.0
+
+### Minor Changes
+
+- Updates/adds lazygit configuration for Neovim
+
 ## 0.7.0
 
 ### Minor Changes
