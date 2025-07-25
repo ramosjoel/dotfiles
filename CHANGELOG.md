@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.9.0
+
+### Minor Changes
+
+- Adds bun setup to zshrc
+
 ## 0.8.0
 
 ### Minor Changes
