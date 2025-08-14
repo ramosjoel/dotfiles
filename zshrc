@@ -171,3 +171,6 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# UV
+source $HOME/.local/bin/env
