@@ -23,13 +23,28 @@ end
 
 -- GitHub Copilot'
 return {
-    'github/copilot.vim',
-    -- Only load on work machine
-    enabled = _M.isWorkMachine(),
-    config = function()
-        -- Use Option + Enter to accept GitHub Copilot suggestions
-        -- C-CR did not work
-        vim.api.nvim_set_keymap('i', '<M-CR>', 'copilot#Accept("<CR>")', { expr = true, noremap = true, silent = true })
-        vim.g.copilot_no_tab_map = true
-    end
+    {
+        'github/copilot.vim',
+        -- Only load on work machine
+        enabled = _M.isWorkMachine(),
+        config = function()
+            -- Use Option + Enter to accept GitHub Copilot suggestions
+            -- C-CR did not work
+            vim.api.nvim_set_keymap('i', '<M-CR>', 'copilot#Accept("<CR>")',
+                { expr = true, noremap = true, silent = true })
+            vim.g.copilot_no_tab_map = true
+        end
+    },
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        -- Only load on work machine
+        enabled = _M.isWorkMachine(),
+        dependencies = {
+            { "nvim-lua/plenary.nvim", branch = "master" },
+        },
+        build = "make tiktoken",
+        opts = {
+            -- See Configuration section for options
+        },
+    },
 }
