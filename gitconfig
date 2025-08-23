@@ -8,3 +8,5 @@
 	email = 7258285+ramosjoel@users.noreply.github.com
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
