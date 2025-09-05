@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.10.0
+
+### Minor Changes
+
+- Adds k9s config files
+
 ## 0.9.0
 
 ### Minor Changes
