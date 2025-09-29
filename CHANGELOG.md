@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.10.1
+
+### Patch Changes
+
+- Fix release workflow
+
 ## 0.10.0
 
 ### Minor Changes
