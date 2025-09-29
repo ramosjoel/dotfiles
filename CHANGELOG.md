@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.10.2
+
+### Patch Changes
+
+- Fix: Update Release job to use pnpm
+
 ## 0.10.1
 
 ### Patch Changes
