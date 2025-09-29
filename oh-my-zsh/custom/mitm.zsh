@@ -6,7 +6,7 @@ function enable_macos_proxy() {
 
   IFS=$'\n' # split on newlines in the for loops
 
-  for interface in $interfaces; do
+  for interface in "${(f)interfaces}"; do
     echo "Setting proxy on $interface"
     networksetup -setwebproxy "$interface" 127.0.0.1 8080
     networksetup -setwebproxystate "$interface" on
@@ -20,7 +20,7 @@ function disable_macos_proxy() {
   interfaces="$(networksetup -listallnetworkservices | tail +2)" 
 
   IFS=$'\n' # split on newlines in the for loops
-  for interface in $interfaces; do
+  for interface in "${(f)interfaces}"; do
     echo "Disabling proxy on $interface"
     networksetup -setwebproxystate "$interface" off
     networksetup -setsecurewebproxystate "$interface" off

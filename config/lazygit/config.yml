@@ -1,0 +1,8 @@
+# See https://sourcegraph.com/github.com/jesseduffield/lazygit/-/blob/docs/Config.md#configuring-lazygit
+# for the complete documentation/schema for this file.
+
+os:
+  # Make sure lazygit opens files for editing in Neovim.
+  # LazyGit *should* figure out your editor based on the $VISUAL or $EDITOR 
+  # environment variables, but if it doesn't (which is was the case for me), you can set it here.
+  editPreset: 'nvim'

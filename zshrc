@@ -164,3 +164,13 @@ fi
 
 # Fork for behave-parallel on Catalina
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# bun completions
+[ -s "/Users/joel/.oh-my-zsh/completions/_bun" ] && source "/Users/joel/.oh-my-zsh/completions/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# UV
+source $HOME/.local/bin/env

@@ -1,5 +1,43 @@
 # dotfiles
 
+## 0.10.2
+
+### Patch Changes
+
+- Fix: Update Release job to use pnpm
+
+## 0.10.1
+
+### Patch Changes
+
+- Fix release workflow
+
+## 0.10.0
+
+### Minor Changes
+
+- Adds k9s config files
+
+## 0.9.0
+
+### Minor Changes
+
+- Adds bun setup to zshrc
+
+## 0.8.0
+
+### Minor Changes
+
+- Updates/adds lazygit configuration for Neovim
+
+## 0.7.0
+
+### Minor Changes
+
+- 968fdc4: Adds neovim configs for DAP UI, Go debugging, and running tests.
+- Updates the pnpm script names to avoid conflicts with other tools
+- 19e6794: Updates dotfiles with various cleanup
+
 ## 0.6.0
 
 ### Minor Changes
