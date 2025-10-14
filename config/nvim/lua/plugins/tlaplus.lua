@@ -1,3 +1,4 @@
+-- https://github.com/susliko/tla.nvim
 return {
   "susliko/tla.nvim",
   config = function ()
