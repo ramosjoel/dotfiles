@@ -1,13 +1,7 @@
-vim.lsp.config('ts_ls').setup {
+return {
 
   -- Function to execute when the LSP client attaches to a buffer
-  on_attach = function(client, bufnr)
-    -- NOTE: Remember that lua is a real programming language, and as such it is possible
-    -- to define small helper and utility functions so you don't have to repeat yourself
-    -- many times.
-    --
-    -- In this case, we create a function that lets us more easily define mappings specific
-    -- for LSP related items. It sets the mode, buffer and description for us each time.
+  on_attach = function(_, bufnr)
     local nmap = function(keys, func, desc)
       if desc then
         desc = 'LSP: ' .. desc
