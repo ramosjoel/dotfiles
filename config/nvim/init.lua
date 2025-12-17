@@ -66,24 +66,6 @@ require('lazy').setup({
     end,
   },
 
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
-  { -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
-    },
-  },
-
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
@@ -470,36 +452,75 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
+  'lua_ls',
+  'ts_ls',
+  'gopls',
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
 }
+
+-- 1) Global LSP defaults (applies to every LSP client)
+vim.lsp.config('*', {
+  -- You can still put "capabilities", "settings", etc. here
+  on_attach = on_attach,
+})
+
+-- Set up Lua LSP to recognize 'vim' global
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = { diagnostics = { globals = { 'vim', 'require' } } }
+  },
+  -- You can still add a server-specific on_attach if you need it:
+  on_attach = function(client, bufnr)
+    -- extra Lua-only bindings
+  end,
+})
+
+-- 2) Define buffer-local setup when an LSP actually attaches
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my_lsp_attach', { clear = true }),
+  callback = function(args)
+    local bufnr  = args.buf
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+    -- Recreate your old :Format (buffer-local) command
+    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function()
+      vim.lsp.buf.format({ async = false }) -- or async=true if you prefer
+    end, { desc = 'Format current buffer with LSP' })
+
+    -- Any other "on_attach" logic you used to have:
+    -- keymaps, toggling diagnostics, etc.
+    -- Example:
+    -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = 'Go to definition' })
+  end,
+})
+
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('gopls')
+
+-- LSP keymap for formatting using eslint
+vim.keymap.set('n', '<leader>f', ':Format<CR>', { desc = 'LSP: [F]ormat current buffer' })
 
 -- Setup neovim lua configuration
 require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Setup mason so it can manage external tooling
-require('mason').setup()
+-- require('mason').setup()
 
 -- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
+-- local mason_lspconfig = require 'mason-lspconfig'
 
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
+-- mason_lspconfig.setup {
+--   ensure_installed = vim.tbl_keys(servers),
+-- }
 
 -- mason_lspconfig.setup_handlers {
 --   function(server_name)

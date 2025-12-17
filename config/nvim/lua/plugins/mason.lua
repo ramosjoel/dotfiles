@@ -1,0 +1,56 @@
+return {
+    {
+       'williamboman/mason.nvim',
+       config = function()
+           require('mason').setup()
+       end,
+   },
+   {
+       'williamboman/mason-lspconfig.nvim',
+       dependencies = { 'williamboman/mason.nvim', 'neovim/nvim-lspconfig' },
+       config = function()
+           require('mason-lspconfig').setup {
+               ensure_installed = {
+                    'lua_ls',
+                    'ts_ls',
+                    'bashls',
+                    'clangd',
+                    'bzl',
+                    'cssls',
+                    'cucumber_language_server',
+                    'docker_compose_language_service',
+                    'dockerls',
+                    'eslint',
+                    'golangci_lint_ls',
+                    'graphql',
+                    'html',
+                    'htmx',
+                    'jinja_lsp',
+                    'jsonls',
+                    'kotlin_language_server',
+                    'luau_lsp',
+                    'prosemd_lsp',
+                    'pylsp',
+                    'tailwindcss',
+                    'yamlls',
+                }, -- Example servers
+               -- automatic_enable = true, -- Default is true, no need to explicitly set unless changing
+           }
+       end,
+   },
+   {
+       'neovim/nvim-lspconfig',
+       -- nvim-lspconfig is still needed as it provides the server-specific configurations
+       -- but its 'setup' function is no longer called directly.
+       dependencies = {
+         -- Automatically install LSPs to stdpath for neovim
+         'williamboman/mason.nvim',
+         'williamboman/mason-lspconfig.nvim',
+         -- Useful status updates for LSP
+         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+         { 'j-hui/fidget.nvim', opts = {} },
+         -- Additional lua configuration, makes nvim stuff amazing!
+         'folke/neodev.nvim',
+       }
+   },
+}
