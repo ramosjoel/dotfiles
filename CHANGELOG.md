@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.11.0
+
+### Minor Changes
+
+- Initial update to Neovim LSP configs
+
 ## 0.10.2
 
 ### Patch Changes
