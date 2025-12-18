@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.12.1
+
+### Patch Changes
+
+- Fixes Oh My Posh Node package manager version in the prompt
+
 ## 0.12.0
 
 ### Minor Changes

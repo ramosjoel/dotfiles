@@ -52,7 +52,10 @@
           "powerline_symbol": "\ue0b0",
           "background": "#76b367",
           "type": "node",
-          "style": "powerline"
+          "style": "powerline",
+          "cache": {
+            "strategy": "folder"
+          }
         },
         {
           "type": "go",
@@ -61,7 +64,8 @@
           "foreground": "#ffffff",
           "background": "#7FD5EA",
           "template": "  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} "
-        },{
+        },
+        {
           "type": "aws",
           "style": "powerline",
           "powerline_symbol": "",
