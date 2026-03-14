@@ -3,28 +3,28 @@
 # Set readline editing to vi
 set -o vi
 
-MAC_ARCH=$(uname -m)
-if [[ $MAC_ARCH = "x86_64" ]]
-then
-  export EDITOR=/usr/local/bin/nvim
-  export VISUAL=/usr/local/bin/nvim
-else
-  export EDITOR=/opt/homebrew/bin/nvim
-  export VISUAL=/opt/homebrew/bin/nvim
-fi
-
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/${USER}/.oh-my-zsh"
 
-# zsh syntax highlighting
-if [[ ${MAC_ARCH} = "x86_64" ]]
+MAC_ARCH=$(uname -m)
+if [[ $MAC_ARCH = "x86_64" ]]
 then
+  export EDITOR=/usr/local/bin/nvim
+  export VISUAL=/usr/local/bin/nvim
+  # Java
+  export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home"
+  export PATH=$PATH:"${JAVA_HOME}/bin"
+  # zsh syntax highlighting
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
+  export EDITOR=/opt/homebrew/bin/nvim
+  export VISUAL=/opt/homebrew/bin/nvim
+  # UV
+  source $HOME/.local/bin/env
+  # zsh syntax highlighting
   source /opt/homebrew/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
@@ -151,13 +151,6 @@ export PATH=$PATH:"${ANDROID_HOME}/platform-tools"
 # Chromedriver
 export PATH=$PATH:"/Users/${USER}/dev/webdrivers/chrome90"
 
-# Java
-if [[ $MAC_ARCH = "x86_64" ]]
-then
-  export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home"
-  export PATH=$PATH:"${JAVA_HOME}/bin"
-fi
-
 # powerline status bar
 # powerline_root=$(pip3 show powerline-status | grep Location | awk '{print $2}')
 # . ${powerline_root}/powerline/bindings/zsh/powerline.zsh
@@ -172,5 +165,3 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# UV
-source $HOME/.local/bin/env
