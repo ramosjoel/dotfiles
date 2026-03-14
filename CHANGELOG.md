@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.12.2
+
+### Patch Changes
+
+- a21686c: Fix zshrc and zprofile for intel macs
+
 ## 0.12.1
 
 ### Patch Changes
