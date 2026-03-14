@@ -1,1 +1,1 @@
-EXCLUDES="*.lock *.omp.json node_modules package.json README.md CHANGELOG.md"
+EXCLUDES="*.lock *.lock.yaml *.lock.yml *.omp.json node_modules package.json README.md CHANGELOG.md"
