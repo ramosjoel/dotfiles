@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.13.0
+
+### Minor Changes
+
+- 444c6ad: Adds zsh helper function to prune docker volumes
+
 ## 0.12.2
 
 ### Patch Changes
