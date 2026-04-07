@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.13.1
+
+### Patch Changes
+
+- c77970d: Fix tmux theme on intel mac
+
 ## 0.13.0
 
 ### Minor Changes
