@@ -1,5 +1,11 @@
 # dotfiles
 
+## 0.14.0
+
+### Minor Changes
+
+- 8f41697: Adds dbee sql client neovim plugin and config
+
 ## 0.13.1
 
 ### Patch Changes
