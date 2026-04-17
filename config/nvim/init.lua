@@ -510,7 +510,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('ts_ls')
-vim.lsp.enable('gopls')
+-- vim.lsp.enable('gopls')
 
 -- LSP keymap for formatting using eslint
 vim.keymap.set('n', '<leader>f', ':Format<CR>', { desc = 'LSP: [F]ormat current buffer' })

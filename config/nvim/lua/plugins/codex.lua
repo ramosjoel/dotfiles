@@ -22,12 +22,12 @@ function _M.getHostname()
 end
 
 function _M.isWorkMachine()
-    io.write("Checking for work machine before loading copilot...\n")
+    io.write("Checking for work machine before loading codex...\n")
     local result = _M.getHostname() == "MAC-JRAMOS"
     if result then
-        io.write("Work machine detected. Loading copilot...\n")
+        io.write("Work machine detected. Loading codex...\n")
     else
-        io.write("Not a work machine. Skipping copilot...\n")
+        io.write("Not a work machine. Skipping codex...\n")
     end
 end
 
