@@ -1,4 +1,5 @@
 
+.pnpm/*
 **/.DS_Store
 node_modules/*
 oh-my-zsh/custom/goodrx.zsh
