@@ -1,5 +1,15 @@
 # dotfiles
 
+## 1.0.0
+
+### Major Changes
+
+- ca40d7b: Adds git-delta to gitconfig which is probably gonna break machines without it
+
+### Patch Changes
+
+- 73d3613: Fix minor startup errors on arm machine
+
 ## 0.14.0
 
 ### Minor Changes
