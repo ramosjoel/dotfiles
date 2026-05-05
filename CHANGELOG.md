@@ -1,5 +1,12 @@
 # dotfiles
 
+## 1.1.0
+
+### Minor Changes
+
+- fb97cb0: Adds utils.zsh helper functions
+- 9a191c5: Adds glow completion script
+
 ## 1.0.0
 
 ### Major Changes
