@@ -1,5 +1,11 @@
 # dotfiles
 
+## 1.2.0
+
+### Minor Changes
+
+- 1ca51be: Adds an nb.zsh for nb-specific things
+
 ## 1.1.0
 
 ### Minor Changes
