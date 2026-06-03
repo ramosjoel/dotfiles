@@ -165,3 +165,5 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Add ~/.local/bin to PATH
+ export PATH="$HOME/.local/bin:$PATH"
