@@ -2,6 +2,9 @@
 .pnpm/*
 **/.DS_Store
 node_modules/*
-oh-my-zsh/custom/goodrx.zsh
 oh-my-zsh/custom/codefresh.zsh
+oh-my-zsh/custom/github.zsh
+oh-my-zsh/custom/goodrx.zsh
+oh-my-zsh/custom/plaid.zsh
+oh-my-zsh/custom/supabase.zsh
 okta_aws_login_config
