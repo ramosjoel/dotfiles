@@ -10,8 +10,6 @@
 	rebase = false
 [init]
 	defaultBranch = main
-[url "ssh://git@github.com/"]
-    insteadOf = https://github.com/
 [core]
     pager = delta
 
@@ -24,3 +22,11 @@
 
 [merge]
     conflictStyle = zdiff3
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[include]
+	path = ~/.config/git/local.gitconfig
+[includeIf "gitdir/i:~/GoodRx/**"]
+	path = ~/.config/git/goodrx.gitconfig

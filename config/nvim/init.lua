@@ -122,7 +122,7 @@ require('lazy').setup({
   { 'numToStr/Comment.nvim',         opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -139,13 +139,23 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    config = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
+    branch = 'main',
+    lazy = false,
+    build = ':TSUpdate',
   },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'main',
+  },
+  -- { -- Highlight, edit, and navigate code
+  --   'nvim-treesitter/nvim-treesitter',
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter-textobjects',
+  --   },
+  --   config = function()
+  --     pcall(require('nvim-treesitter.install').update { with_sync = true })
+  --   end,
+  -- },
 
   -- { 'google/vim-maktaba' },
   -- { 'bazelbuild/vim-bazel' },
@@ -305,111 +315,145 @@ vim.keymap.set('n', '<leader>ts', require('telescope.builtin').treesitter, { des
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
-require('nvim-treesitter.configs').setup {
-  -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = {
-    'c',
-    'cpp',
-    'css',
-    'csv',
-    'diff',
-    'dockerfile',
-    'dot',
-    'git_config',
-    'go',
-    'graphql',
-    'html',
-    'javascript',
-    'json',
-    'jsdoc',
-    'latex',
-    'lua',
-    'make',
-    'mermaid',
-    'python',
-    'regex',
-    'ruby',
-    'rust',
-    'ssh_config',
-    'starlark',
-    'sql',
-    'terraform',
-    'textproto',
-    'tmux',
-    'toml',
-    'tsx',
-    'typescript',
-    'vim',
-    'vimdoc',
-    'xml',
-    'yaml'
-  },
+local treesitter = require('nvim-treesitter')
+local treesitter_parsers = {
+  'c',
+  'cpp',
+  'css',
+  'csv',
+  'diff',
+  'dockerfile',
+  'dot',
+  'git_config',
+  'go',
+  'graphql',
+  'html',
+  'javascript',
+  'json',
+  'jsdoc',
+  'latex',
+  'lua',
+  'make',
+  'mermaid',
+  'python',
+  'regex',
+  'ruby',
+  'rust',
+  'ssh_config',
+  'starlark',
+  'sql',
+  'terraform',
+  'textproto',
+  'tmux',
+  'toml',
+  'tsx',
+  'typescript',
+  'vim',
+  'vimdoc',
+  'xml',
+  'yaml',
+}
 
-  -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-  auto_install = false,
+treesitter.setup {
+  install_dir = vim.fn.stdpath('data') .. '/site',
+}
 
-  highlight = { enable = true },
-  indent = { enable = true, disable = { 'python' } },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      scope_incremental = '<c-s>',
-      node_decremental = '<M-space>',
-    },
-  },
-  textobjects = {
+vim.api.nvim_create_user_command('TSInstallConfigured', function()
+  treesitter.install(treesitter_parsers)
+end, {})
+
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+
+    if vim.bo[args.buf].filetype ~= 'python' then
+      vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
+  end,
+})
+
+local textobjects_ok, textobjects = pcall(require, 'nvim-treesitter-textobjects')
+if textobjects_ok then
+  textobjects.setup {
     select = {
-      enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ['aa'] = '@parameter.outer',
-        ['ia'] = '@parameter.inner',
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
+      lookahead = true,
     },
     move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
-      },
+      set_jumps = true,
     },
-    swap = {
-      enable = true,
-      swap_next = {
-        ['<leader>a'] = '@parameter.inner',
-      },
-      swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
-      },
-    },
-  },
-}
+  }
+
+  local select_ok, ts_select = pcall(require, 'nvim-treesitter-textobjects.select')
+  if select_ok then
+    vim.keymap.set({ 'x', 'o' }, 'aa', function()
+      ts_select.select_textobject('@parameter.outer', 'textobjects')
+    end)
+    vim.keymap.set({ 'x', 'o' }, 'ia', function()
+      ts_select.select_textobject('@parameter.inner', 'textobjects')
+    end)
+    vim.keymap.set({ 'x', 'o' }, 'af', function()
+      ts_select.select_textobject('@function.outer', 'textobjects')
+    end)
+    vim.keymap.set({ 'x', 'o' }, 'if', function()
+      ts_select.select_textobject('@function.inner', 'textobjects')
+    end)
+    vim.keymap.set({ 'x', 'o' }, 'ac', function()
+      ts_select.select_textobject('@class.outer', 'textobjects')
+    end)
+    vim.keymap.set({ 'x', 'o' }, 'ic', function()
+      ts_select.select_textobject('@class.inner', 'textobjects')
+    end)
+  end
+
+  local move_ok, ts_move = pcall(require, 'nvim-treesitter-textobjects.move')
+  if move_ok then
+    vim.keymap.set({ 'n', 'x', 'o' }, ']m', function()
+      ts_move.goto_next_start('@function.outer', 'textobjects')
+    end)
+    vim.keymap.set({ 'n', 'x', 'o' }, ']]', function()
+      ts_move.goto_next_start('@class.outer', 'textobjects')
+    end)
+    vim.keymap.set({ 'n', 'x', 'o' }, ']M', function()
+      ts_move.goto_next_end('@function.outer', 'textobjects')
+    end)
+    vim.keymap.set({ 'n', 'x', 'o' }, '][', function()
+      ts_move.goto_next_end('@class.outer', 'textobjects')
+    end)
+    vim.keymap.set({ 'n', 'x', 'o' }, '[m', function()
+      ts_move.goto_previous_start('@function.outer', 'textobjects')
+    end)
+    vim.keymap.set({ 'n', 'x', 'o' }, '[[', function()
+      ts_move.goto_previous_start('@class.outer', 'textobjects')
+    end)
+    vim.keymap.set({ 'n', 'x', 'o' }, '[M', function()
+      ts_move.goto_previous_end('@function.outer', 'textobjects')
+    end)
+    vim.keymap.set({ 'n', 'x', 'o' }, '[]', function()
+      ts_move.goto_previous_end('@class.outer', 'textobjects')
+    end)
+  end
+
+  local swap_ok, ts_swap = pcall(require, 'nvim-treesitter-textobjects.swap')
+  if swap_ok then
+    vim.keymap.set('n', '<leader>a', function()
+      ts_swap.swap_next('@parameter.inner')
+    end)
+    vim.keymap.set('n', '<leader>A', function()
+      ts_swap.swap_previous('@parameter.inner')
+    end)
+  end
+end
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+-- NvimTree keymaps
+vim.keymap.set('n', '<leader>tt', function()
+  require('nvim-tree.api').tree.toggle({ find_file = true })
+end, { desc = 'Nvim[T]ree Find File' })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
