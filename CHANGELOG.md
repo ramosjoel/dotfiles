@@ -1,5 +1,12 @@
 # dotfiles
 
+## 1.2.0
+
+### Minor Changes
+
+- 1ca51be: Adds an nb.zsh for nb-specific things
+- 99e048f: Updates lazygit config and adds a pull request template
+
 ## 1.1.0
 
 ### Minor Changes
