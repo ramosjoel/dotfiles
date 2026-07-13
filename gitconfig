@@ -30,3 +30,5 @@
 	path = ~/.config/git/local.gitconfig
 [includeIf "gitdir/i:~/GoodRx/**"]
 	path = ~/.config/git/goodrx.gitconfig
+[url "git@github.com:GoodRx/"]
+	insteadOf = https://github.com/GoodRx/
