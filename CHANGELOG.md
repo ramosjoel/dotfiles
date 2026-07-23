@@ -1,5 +1,13 @@
 # dotfiles
 
+## 1.3.0
+
+### Minor Changes
+
+- d0e2bc6: Adds claude.nvim plugin
+- d598eaf: Adds helpers to utils.zsh for timestamp and datetime conversions
+- beacdde: Refactor zshrc custom scripts for work/personal
+
 ## 1.2.0
 
 ### Minor Changes
