@@ -4,3 +4,8 @@
 # https://xwmx.github.io/nb/#overview
 
 export NB_DIR="/Users/${USER}/.nb"
+
+# List open tasks
+function ot() {
+  nb tasks/ todos open
+}
