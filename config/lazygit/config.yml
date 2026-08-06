@@ -16,6 +16,9 @@ git:
       # As is, it really only works for viewing, but pressing enter to stage chunks switches to raw git
       # which is a bit jarring, so keeping this here should that improve later.
     - command: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  commitPrefix:
+    - pattern: "^(\\w+-\\d+).*"
+      replace: '[$1] '
 
 os:
   # Make sure lazygit opens files for editing in Neovim.
