@@ -1,6 +1,10 @@
 # See https://sourcegraph.com/github.com/jesseduffield/lazygit/-/blob/docs/Config.md#configuring-lazygit
 # for the complete documentation/schema for this file.
 
+gui:
+  nerdFontsVersion: "3"
+  showBranchCommitHash: false
+
 git:
   overrideGpg: true
   # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_DiffRenderers.md
