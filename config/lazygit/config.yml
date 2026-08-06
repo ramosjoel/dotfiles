@@ -1,8 +1,24 @@
 # See https://sourcegraph.com/github.com/jesseduffield/lazygit/-/blob/docs/Config.md#configuring-lazygit
 # for the complete documentation/schema for this file.
 
+gui:
+  nerdFontsVersion: "3"
+  showBranchCommitHash: false
+
 git:
   overrideGpg: true
+  # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_DiffRenderers.md
+  diffRenderers:
+    - type: rawGit # git's default diff
+      name: default
+      # delta diff-renderer seems to require lazygit v0.64+
+      # delta could be neat, but making secondary to raw git for compatibility reasons.
+      # As is, it really only works for viewing, but pressing enter to stage chunks switches to raw git
+      # which is a bit jarring, so keeping this here should that improve later.
+    - command: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  commitPrefix:
+    - pattern: "^(\\w+-\\d+).*"
+      replace: '[$1] '
 
 os:
   # Make sure lazygit opens files for editing in Neovim.
