@@ -347,6 +347,7 @@ local treesitter_parsers = {
   'sql',
   'terraform',
   'textproto',
+  'turtle',
   'tmux',
   'toml',
   'tsx',
