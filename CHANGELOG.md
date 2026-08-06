@@ -1,5 +1,18 @@
 # dotfiles
 
+## 1.4.0
+
+### Minor Changes
+
+- f13de72: Sets git rebase.updateRefs to true
+- d1ed1fc: Lazygit updates
+
+  - Adds nerdfont icons
+  - Adds delta as a diff-renderer, but keeps raw git as the main diff-renderer for now
+  - Adds commitPattern to auto add ticket IDs to commit messages if the branch name is a ticket ID
+
+- e26ad07: Adds 'turtle' lang to nvim treesitter config to support .ttl files
+
 ## 1.3.0
 
 ### Minor Changes
