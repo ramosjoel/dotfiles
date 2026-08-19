@@ -25,3 +25,17 @@ os:
   # LazyGit *should* figure out your editor based on the $VISUAL or $EDITOR 
   # environment variables, but if it doesn't (which is was the case for me), you can set it here.
   editPreset: 'nvim'
+
+customCommands:
+  - key: "J"
+    command: "ticket_id=$(echo {{.SelectedLocalBranch.Name}} | grep -oE '^[A-Za-z]+-[0-9]+'); echo $JIRA_BASE_URL/browse/$ticket_id | xargs open"
+    context: "localBranches"
+    description: "Open Jira ticket in browser"
+  - key: "G"
+    command: "gh pr view -w {{.SelectedLocalBranch.Name}}"
+    context: "localBranches"
+    description: "Open Github PR in browser"
+  - key: "G"
+    command: "gh pr view -w"
+    context: "commits"
+    description: "Open Github PR in browser"
