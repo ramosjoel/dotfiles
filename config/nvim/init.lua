@@ -458,6 +458,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 vim.keymap.set('n', '<leader>tt', function()
   require('nvim-tree.api').tree.toggle({ find_file = true })
 end, { desc = 'Nvim[T]ree Find File' })
+vim.keymap.set('n', '<leader>tf', function()
+  require('nvim-tree.api').tree.open()
+end, { desc = 'Nvim[T]ree [F]ocus' })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
