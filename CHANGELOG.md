@@ -1,5 +1,11 @@
 # dotfiles
 
+## 1.5.0
+
+### Minor Changes
+
+- 9e213d3: Adds lazygit custom commands and nvim-tree keymap
+
 ## 1.4.0
 
 ### Minor Changes
