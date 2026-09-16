@@ -31,6 +31,22 @@ function ff() {
   find . -type f -iname "*$1*"
 }
 
+# Search file contents for a pattern and open in Neovim
+#
+# 1. Searches file contents via 'rg'
+# 2. Launches fzf with a syntax-color preview using bat
+# 3. Passes the found result to $EDITOR
+function eo() {
+  rg --line-number "" . | fzf --delimiter : \
+    --preview '
+      line={2}
+      start=$(( line > 10 ? line - 10 : 1 ))
+      end=$(( line + 10 ))
+      bat --color=always --highlight-line $line --line-range $start:$end -- {1}
+    ' \
+    | awk -F: '{print $1}' | xargs $EDITOR
+}
+
 # ----- Networking ----- #
 function myip() {
   curl -s ifconfig.me
